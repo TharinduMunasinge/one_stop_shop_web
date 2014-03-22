@@ -5,7 +5,7 @@
 				</div>
 				<div class="bg" style="float:right">
 
-					<form id="search" action="" method="post">
+					<form id="search" action="{{URL::route('signin')}}" method="GET">
 					<input type="submit" class="btn btn btn-info btn-large" value="Sign in">
 					</form>		
 				</div>

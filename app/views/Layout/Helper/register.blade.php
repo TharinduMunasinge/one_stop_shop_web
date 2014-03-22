@@ -1,8 +1,6 @@
  <div class="container" >
  
- @if(Session::has('global'))
- 	{{Session::get('global')}}
- @endif
+ 
 
  <form class="form-horizontal" action="{{URL::route('account')}}" method="post">
 		      	<fieldset>

@@ -55,7 +55,7 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'authendication',
+			'database'  => 'One_Stop_Shop',
 			'username'  => 'root',
 			'password'  => '',
 			'charset'   => 'utf8',

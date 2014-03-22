@@ -26,7 +26,7 @@ return array(
 	|
 	*/
 
-	'url' => 'http://localhost/projects/authendication',
+	'url' => 'http://localhost/projects/one_stop_shop_web',
 
 	/*
 	|--------------------------------------------------------------------------
