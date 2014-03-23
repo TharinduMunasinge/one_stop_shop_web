@@ -50,9 +50,10 @@ class AccountsController extends BaseController {
 	public function postCreate()
 	{
 		$validator= Validator::make(Input::all(),array(
-				'email'=>'required|email|unique:users,email',
-				'name'=>'required',
-				'user_name'=>'required|unique:users,username',
+				'email'=>'required|email|unique:Customer,email',
+				'first_name'=>'required',
+				'last_name'=>'required',
+				'user_name'=>'required|unique:UserAccount,username',
 				'password'=>'required',
 				'retyped_password'=>'required|same:password',
 				'contact'=>'required',
@@ -69,23 +70,62 @@ class AccountsController extends BaseController {
 		else
 		{
 			$email =Input::get('email');
-			$password =Input::get('password');
+			$password =Hash::make(Input::get('password'));
 			$username=Input::get('user_name');
 			$code=str_random(60);
+			$user=new UserAccount();
+			//Tempory solution for ID increment
+			
+			    
+			
 
-			$user=User::create(array(
+			$acno=Customer::select('CustomerID')->orderBy('CustomerID', 'desc')->first()->CustomerID+1;
+			$acno="00000".$acno;
+
+			$customer =new Customer();
+			
+			$customer->CustomerID=$acno;
+			$customer->FirstName=Input::get('first_name');
+			$customer->LastName=Input::get('last_name');
+			$customer->AddressCity=Input::get('city');
+			$customer->AddressStreet=Input::get('street');
+			$customer->AddressNumber=Input::get('address_no');
+			$customer->Email=Input::get('email');
+			$customer->CustomerType='M';
+			$customer->save();
+
+
+			$user=new UserAccount();
+			$user->UserName=$username;
+			$user->Password=$password;
+			$user->AccountType='CU';
+			$user->AccountNumber=$acno;
+			$user->save();
+
+
+
+			$webUser=new WebUser(array('code'=>$code,'activated'=>0));
+			$user->webUser()->save($webUser);
+
+
+			
+			
+
+/*
+			$user=UserAccount::create(array(
 				'email'=>$email,
 				'password'=>Hash::make($password),
 				'username'=>$username,
 				'code'=>$code,
 				'activate'=> 'False'
 			));
-
+*/
 			if($user){
 
+				$user->email=$email;
 				Mail::send('emails.auth.activate',array('link'=>URL::route('account-activate',$code),'username' =>$username),function($message) use ($user)
 				{
-					$message->to($user->email,$user->username)->subject('Activate your account'); 
+					$message->to($user->email,$user->Username)->subject('Activate your account'); 
 					# code...
 				});
 
@@ -96,6 +136,9 @@ class AccountsController extends BaseController {
 			{
 				
 			}
+
+			return Redirect::back()->with('global','UserAccount is not created');
+
 			//die('Success');
 		}
 		//print_r(Input::all());
@@ -110,9 +153,10 @@ class AccountsController extends BaseController {
 		//
 	}
 
+
 	public function getActivate($code)
 	{
-		$usr=User::where('code',$code)->where('activated',0);
+		$usr=WebUser::where('code',$code)->where('activated',0);
 		if($usr->count())
 		{
 			$usr=$usr->first();
@@ -150,7 +194,7 @@ class AccountsController extends BaseController {
 			return Redirect::route('password-change-view')->withErrors($validator);
 
 		}else{
-			$user=User::find(Auth::user()->id);
+			$user=User::find(Auth::user()->username);
 			$old_password=Input::get('old_password');
 			$password=Input::get('new_password');
 
@@ -190,18 +234,21 @@ class AccountsController extends BaseController {
 		}else{
 			$email=Input::get('email');
 
-			$user=User::where('email','=',$email);
+			$user=Customer::where('Email','=',$email);
 
 			if($user->count())
 			{
 
-				$user=$user->first();
+
+				$user=$user->first()->user()->first();
+
 				$code=str_random(60);
 				$password=str_random(10);
 				$user->code=$code;
 				$user->temp_password=Hash::make($password);
 				if($user->save())
 				{
+					$user->email=$email;
 					Mail::send('emails.auth.recover',array('link'=>URL::route('account-recover',$code),'username'=>$user->username,'password'=>$password),function($message) use ($user){
 						$message->to($user->email,$user->username)->subject('Your new password');
 
@@ -224,13 +271,13 @@ class AccountsController extends BaseController {
 	public function getRecover($code)
 	{
 
-		$usr=User::where('code',$code)->where('temp_password','!=','');
-		if($usr->count())
+		$webusr=WebUser::where('code',$code)->where('temp_password','!=','')->first();
+		if($webusr->count())
 		{
-			$usr=$usr->first();
-			$usr->password=$usr->temp_password;
-			$usr->temp_password='';
-			$usr->code='';
+			$usr=$webusr->userAccount()->first();
+			$usr->password=$webusr->temp_password;
+			$webusr->temp_password='';
+			$webusr->code='';
 
 			if($usr->save())
 			{
@@ -259,10 +306,15 @@ class AccountsController extends BaseController {
 		}else{
 
 			$remember=(Input::has('remember'))? true :false;
-
+			//return Input::get('User_name').Input::get('Password');
 			if(Auth::attempt(array('username'=>Input::get('User_name'),'password'=>Input::get('Password'),'activated'=>1),$remember))
 			{
+				if(Auth::user()->AccountType=='CU')
+					return Redirect::route('customer-home');
+				else
+					return Redirect::route('employee-home');
 				return Redirect::route('test');
+
 			}
 			else
 			{

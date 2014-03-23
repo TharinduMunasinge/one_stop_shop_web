@@ -17,7 +17,13 @@ class Customer extends \Eloquent {
 	public function userAccount()
 	{
 		# code...
-		return $this->hasOne('UserAccount','AccountNumber','CustomerID');
+		return $this->hasOne('UserAccount','AccountNumber','CustomerID')->where('AccountType','CU');
+	}
+
+	public function user()
+	{
+		# code...
+		return $this->hasOne('User','AccountNumber','CustomerID')->where('AccountType','CU');
 	}
 
 	public function contact()

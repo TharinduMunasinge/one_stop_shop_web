@@ -2,7 +2,7 @@
 
 class Item extends \Eloquent {
 	protected $table='Item';
-	public $primaryKey='ID';
+	public $primaryKey='ItemID';
 	public $timestamps=false;
 	public  $incrementing=true;
 	protected $fillable=array('BrandCode','ItemTypeCode','Description','BuyingPrice','SellingPrice','LastIntake','LastBuyingQty','AvailableQty');
@@ -25,8 +25,15 @@ class Item extends \Eloquent {
 	public function orderItem()
 	{
 
-		return $this->hasMany('OrderItem','itemId','id');
+		return $this->hasMany('OrderItem','ItemID','ItemID');
 	}
 	
+	public function orders()
+	{
+
+		//return $this->hasManyThrough('Order','OrderItem','OrderNumber','ItemID');
+
+		return $this->belongsToMany('Order','OrderItem','ItemID','OrderNumber')->withPivot('OrderedQty');
+	}
 
 }

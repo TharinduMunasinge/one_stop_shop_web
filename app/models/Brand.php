@@ -1,14 +1,14 @@
 <?php
 
 class Brand extends \Eloquent {
-		protected $table='Brand';
+	protected $table='Brand';
 	public $primaryKey='BrandCode';
 	public $timestamps=false;
 	public  $incrementing=false;
-	protected $fillable=array('Brand','BrandName');
+	protected $fillable=array('BrandCode','BrandName','Description');
 	
 
-	public function item()
+	public function items()
 	{
 		# code...
 		return $this->hasMany('Item','BrandCode','BrandCode');
