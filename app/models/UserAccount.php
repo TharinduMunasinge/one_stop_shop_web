@@ -6,9 +6,9 @@ use Illuminate\Auth\Reminders\RemindableInterface;
 class UserAccount extends Eloquent implements UserInterface, RemindableInterface {
 
 
-	protected $fillable=array('UserName','password','AccountType','AccountNumber');
+	protected $fillable=array('username','password','AccountType','AccountNumber');
 	//public $timestamps=false;
-	public $primaryKey='UserName';
+	public $primaryKey='username';
 	public $timestamps=false;
 	public  $incrementing=false;	
 	protected $userType='';
@@ -93,7 +93,7 @@ class UserAccount extends Eloquent implements UserInterface, RemindableInterface
 
 	public function webUser()
 	{
-			 return $this->hasOne('WebUser','UserName','UserName');
+			 return $this->hasOne('WebUser','username','username');
 	
 	}
 

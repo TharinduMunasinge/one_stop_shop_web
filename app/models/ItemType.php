@@ -8,7 +8,7 @@ class ItemType extends \Eloquent {
 	protected $fillable=array('ItemTypeCode','ItemTypeName');
 	
 
-	public function item()
+	public function items()
 	{
 		# code...
 		return $this->hasMany('Item','ItemTypeCode','ItemTypeCode');

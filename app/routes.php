@@ -30,6 +30,21 @@ Route::group(array('before'=>'auth'), function(){
 
 		});
 
+		Route::get('customer',array(
+
+						'as'=>'customer-home',
+						'uses'=>'CustomersController@index'
+				));
+
+		Route::get('employee',array(
+
+						'as'=>'employee-home',
+						'uses'=>'EmployeesController@index'
+				));
+
+
+		//Route::get('')
+
 		//acount password change View route
 		Route::get('passwordchange',array(
 
@@ -137,14 +152,15 @@ Route::group(array('before'=>'guest'), function(){
 
 Route::get('dbtest',function(){
 
-	return MailOrderCustomer::with('Customer')->where('CustomerID','000001')->first();
+	$usre=WebUser::where('code','fAXU70EHJehW7Q4Fm3kF8wmVs3jc0iXJzqGlcDBWrt5a8dnqBikIzKIt5dDK')->where('temp_password','!=','');
+	return $usre->first()->userAccount()->first();
 });
 
 
 
 Event::listen('illuminate.query', function($sql)
 {
-   var_dump($sql);
+ var_dump($sql);
 });
 
 
