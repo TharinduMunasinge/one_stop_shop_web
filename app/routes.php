@@ -111,6 +111,10 @@ Route::group(array('before'=>'guest'), function(){
 			'uses'=>'AccountsController@getActivate'
 
 		));
+		Route::post('contact',array(
+		'as'=>'contact-message',
+		'uses'=>'ContactUsController@postCreateMessage'
+		));
 
 
 		//Recover page used in recovery email
@@ -134,6 +138,11 @@ Route::group(array('before'=>'guest'), function(){
 			return View::make('Accounts.create')->with('title','Login');
 		}));		
 });
+
+Route::post('contact',array(
+	'as'=>'contact-message',
+	'uses'=>'ContactUsController@postCreateMessage'
+	));
 
 Route::get('dbtest',function(){
 
