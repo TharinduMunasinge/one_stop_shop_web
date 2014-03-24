@@ -25,6 +25,13 @@
   text-shadow: none;
   background-color: transparent;
   border: 0;
+}.input-block-level.textarea {
+  display: block;
+  width: 100%;
+  min-height: 30px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 .input-block-level {
   display: block;
@@ -1250,11 +1257,11 @@ input[type="color"],
   vertical-align: middle;
 }
 input,
-textarea,
 .uneditable-input {
   width: 206px;
 }
-textarea {
+textarea{
+  width: 306px;
   height: auto;
 }
 textarea,
@@ -1725,6 +1732,13 @@ select:focus:invalid:focus {
 .help-inline {
   color: #595959;
 }
+.help-inline-success {
+  color: #008000;
+}
+.help-inline-error {
+  color: #FF0000;
+  display: inline-block;
+}
 .help-block {
   display: block;
   margin-bottom: 10px;
@@ -1732,6 +1746,8 @@ select:focus:invalid:focus {
 .help-inline {
   display: inline-block;
   *display: inline;
+  color:#FF0000;
+
   /* IE7 inline-block hack */
 
   *zoom: 1;
@@ -6242,6 +6258,7 @@ button.close {
     margin-top: 5px;
     padding: 0;
   }
+  
   .nav-collapse .dropdown-menu {
     position: static;
     top: auto;

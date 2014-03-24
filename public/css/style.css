@@ -12,6 +12,28 @@ mark,rp,rt,ruby,summary,time {display:inline}
 	color: #3366FF;
 }
 
+   #columns {
+        width: 850px;
+    }
+
+    #columns .column {
+        position: relative;
+        width: 46%;
+        padding: 1%;
+        
+    }
+
+    #columns .left {
+        float: left;
+    }
+
+    #columns .right {
+        float: right;
+    }
+
+    .lists {
+      list-style: circle inside;
+    }
 
 
 //from bootstrap site
@@ -46,7 +68,33 @@ body {
         padding: 7px 9px;
       }
 
-    
+
+       .form-contactus {
+        max-width: 600px;
+        padding: 19px 29px 29px;
+        margin: 0 auto 20px;
+        background-color: #fff;
+        border: 1px solid #e5e5e5;
+        -webkit-border-radius: 5px;
+           -moz-border-radius: 5px;
+                border-radius: 5px;
+        -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+           -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+                box-shadow: 0 1px 2px rgba(0,0,0,.05);
+      }
+      .form-contactus .form-contactus-heading,
+      .form-contactus .textarea {
+        margin-bottom: 10px;
+
+      }
+      .form-contactus input[type="text"] {
+        font-size: 16px;
+        height: auto;
+        margin-bottom: 15px;
+        padding: 7px 9px;
+        width: 318px
+      }
+   
 
      .form-horizontal {
         max-width: 400px;
