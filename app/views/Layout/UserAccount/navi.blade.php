@@ -6,7 +6,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="#">One Stop Shop</a>
+          <a class="brand" href="{{URL::route('home')}}">One Stop Shop</a>
           <div class="nav-collapse collapse">
             <p class="navbar-text pull-right">
               Logged in as <a href="#" class="navbar-link">{{Auth::user()->username}}</a>
@@ -14,8 +14,8 @@
             <ul class="nav">
               <li class="active"><a href="#">Home</a></li>
               <li><a href="#about">About</a></li>
-              <li><a href="#contact">Contact</a></li>
-              <li><a href="#contact">Contact</a></li>
+              <li><a href="#contact">Store</a></li>
+              <li><a href="{{URL::route('contact-message')}}">Contact</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>

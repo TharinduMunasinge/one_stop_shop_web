@@ -1,5 +1,6 @@
-
-            <h1>Hello, world!</h1>
-            <p>This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
-            <p><a href="#" class="btn btn-primary btn-large">Learn more &raquo;</a></p>
+<div class="hero-unit">
+            <h1>Hello, {{Auth::user()->username}}</h1>
+            <p> "One stop" is known for carrying top quality national and regional brands, with 100% satisfaction guaranteed, at prices consistently below traditional wholesale or retail outlets. </p>
+            <p><a href="#" class="btn btn-primary btn-large">Start Shopping !!! &raquo;</a></p>
  
+ </div>

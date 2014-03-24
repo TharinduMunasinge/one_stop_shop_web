@@ -6,6 +6,6 @@
 				<li><a href="{{URL::route('store')}}"><span><span>Store</span></span></a></li>
 				
 				<li><a href="{{URL::route('login')}}"><span><span>My Account</span></span></a></li>
-				<li class="omega"><a href="{{"contact"}}"><span><span>Contact</span></span></a></li>
+				<li class="omega"><a href="{{URL::route('contact-message')}}"><span><span>Contact</span></span></a></li>
 			</ul>
 </nav>

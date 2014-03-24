@@ -25,7 +25,7 @@ class ContactUsController extends BaseController {
 			));
 		if($validator->fails())
 		{
-			return Redirect::route('contact')->withErrors($validator)->withInput();
+			return Redirect::back()->withErrors($validator)->withInput();
 
 		}
 		else

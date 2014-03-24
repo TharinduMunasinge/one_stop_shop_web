@@ -148,6 +148,11 @@ class AccountsController extends BaseController {
 	 *
 	 * @return Response
 	 */
+
+	public function getCreateMessage()
+	{
+		return View::make('Accounts.contact');
+	}
 	public function store()
 	{
 		//

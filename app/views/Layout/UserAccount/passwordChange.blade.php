@@ -1,10 +1,10 @@
-<div class="container">
+<div class="container" style="float:left">
 			      <form class="form-signin" action="{{URL::route('password-change')}}" method="POST">
 			        <h2 class="form-signin-heading">
 			        	Change Password
 			        </h2>
 
-			        <input type="password" class="input-block-level" placeholder="Old Password" name='old_password' value="{{Input::old('old_password')}}">
+			        <input type="password" class="input-block-level" placeholder="Old Password" name='old_password' >
 					<span>{{$errors->first('old_password')}}</span>	
 
     				 <input type="password" class="input-block-level" placeholder="New Password" name='new_password'>

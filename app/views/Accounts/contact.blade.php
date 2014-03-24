@@ -1,5 +1,5 @@
 @extends('Layout.userAccountMaster')
 
 @section('content')
-	@include('Layout.UserAccount.topContainer')
+	@include('Layout.Helper.contactUs')
 @stop

@@ -1,11 +1,11 @@
 <div class="container">
 
-			      <form class="form-contactus" action="{{URL::route('contact')}}"  method="post">
+			      <form class="form-signin" action="{{URL::route('contact-message')}}"  method="post">
 			      <span class="help-inline-success">@if(Session::has('global'))
  					{{Session::get('global')}}
  					@endif
  					</span> 
-			        <h2 class="form-contactus-heading">Contact Us</h2>			  
+			        <h2 class="form-signin-heading">Contact Us</h2>			  
 			        <label class="control-label" for="inputName">Name* :</label> 			        
 			        <input type="text" class="input-block-level" placeholder="Name" name='name'>
   					<span class="help-inline-error">{{$errors->first('name')}}</span>			      

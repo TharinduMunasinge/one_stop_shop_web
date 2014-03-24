@@ -68,6 +68,11 @@ Route::group(array('before'=>'auth'), function(){
 		Route::get('user/{username}',array(
 			'as'=>'profile-user',
 			'uses'=>'ProfilesController@index'));
+
+		Route::get('contactus',array(
+				'as'=>'contact',
+				'uses'=>'AccountsController@getCreateMessage'
+	));
 });
 
 
@@ -126,10 +131,10 @@ Route::group(array('before'=>'guest'), function(){
 			'uses'=>'AccountsController@getActivate'
 
 		));
-		Route::post('contact',array(
-		'as'=>'contact-message',
-		'uses'=>'ContactUsController@postCreateMessage'
-		));
+		//Route::post('contact',array(
+		//'as'=>'contact-message',
+		//'uses'=>'ContactUsController@postCreateMessage'
+		//));
 
 
 		//Recover page used in recovery email
@@ -159,6 +164,13 @@ Route::post('contact',array(
 	'uses'=>'ContactUsController@postCreateMessage'
 	));
 
+
+Route::get('contact',array(
+	'as'=>'contact-message',
+	function(){
+		return View::make('contact')->with('title','Contact us');
+	}
+	));
 Route::get('dbtest',function(){
 
 	$usre=WebUser::where('code','fAXU70EHJehW7Q4Fm3kF8wmVs3jc0iXJzqGlcDBWrt5a8dnqBikIzKIt5dDK')->where('temp_password','!=','');
@@ -203,10 +215,6 @@ Route::get('store', array('as'=>'store',function()
 }));
 
 
-Route::get('contact', array('as'=>'contact',function()
-{
-	return View::make('contact')->with('title','Contact Us');
-}));
 
 
 
