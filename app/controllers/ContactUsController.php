@@ -40,7 +40,7 @@ class ContactUsController extends BaseController {
 		    Mail::send('emails.contactus.contactus', $data, function($message) use ($email, $name, $subject)
 		    {   
 		        $message->from($email, $name);
-		        $message->to('gayanmettananda@gmail.com');
+		        $message->to('onestopshop.aurora@gmail.com');
 		        $message->subject($subject);
 		    });
 
