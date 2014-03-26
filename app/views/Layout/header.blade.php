@@ -1,7 +1,9 @@
 <header>
 		<div class="wrapper" >
 				<div style="float:left">
-					<h1><img src="images/logo.png" id="logo"></a></h1>
+					<h1>
+						{{HTML::image("images/logo.png", "one STOP shop",array('id'=>'logo'))}}
+					</h1>
 				</div>
 				<div class="bg" style="float:right">
 

@@ -84,10 +84,13 @@
     @include('Layout.authNavi')
 
 
-
+    <div class='container'>
+      @if (Session::has('global'))
+                    <div class="alert alert-info">{{ Session::get('global') }}</div>
+@endif
     @yield('form')
 
-
+  </div>
 
    
 

@@ -8,13 +8,18 @@
 			{{$title}}
 	</title>
 	<meta charset="utf-8">
-	<link rel="stylesheet" href="css/bootstrap.css" type="text/css" media="all">
-	<link rel="stylesheet" href="css/reset.css" type="text/css" media="all">
-	<link rel="stylesheet" href="css/layout.css" type="text/css" media="all">
-	<link rel="stylesheet" href="css/style.css" type="text/css" media="all">
-	
+	{{HTML::style("css/bootstrap.css")}}
+	{{HTML::style("css/reset.css")}}
+	{{HTML::style("css/layout.css")}}
+	{{HTML::style("css/style.css" )}}
 
+	
+	
+	@yield('scripts')
+	
 	<script type="text/javascript" src="js/jquery-1.4.2.js" ></script>
+	<script type="text/javascript" src="js/bootstrap.min.js" ></script>
+	
 	<script type="text/javascript" src="js/cufon-yui.js"></script>
 	<script type="text/javascript" src="js/cufon-replace.js"></script>
 	<script type="text/javascript" src="js/Myriad_Pro_400.font.js"></script>

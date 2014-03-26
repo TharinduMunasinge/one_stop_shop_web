@@ -266,7 +266,7 @@ class AccountsController extends BaseController {
 
 			}else{
 
-				return Redriect::back()->with('global','Invalid email address');
+				return Redirect::back()->with('global','Invalid email address');
 			}		
 		}
 
@@ -323,7 +323,7 @@ class AccountsController extends BaseController {
 			}
 			else
 			{
-				return Redirect::route('account')->with('global','Error in loggin');
+				return Redirect::back()->with('global','Error in loggin');
 			}
 		
 		}

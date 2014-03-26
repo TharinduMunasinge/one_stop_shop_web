@@ -112,6 +112,10 @@
 
         <div class="span9">
               <div class="row-fluid">
+                  @if (Session::has('global'))
+                    <div class="alert alert-info">{{ Session::get('global') }}</div>
+@endif
+
                   @yield('content');
               </div>
               <hr>

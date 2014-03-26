@@ -11,7 +11,11 @@
 |
 */
 //Authendicated group
+Route::get('register',array(
 
+						'as'=>'register',
+						'uses'=>'AccountsController@getRegister'
+					));
 
 
 
@@ -86,7 +90,7 @@ Route::group(array('before'=>'guest'), function(){
 		Route::group(array('before'=>'csrf'),function(){
 				
 					//sign , registration form in public view
-					Route::post('account',array(
+					Route::post('account/create',array(
 					'as'=>'account',
 					'uses'=>'AccountsController@postCreate'
 					));
@@ -112,14 +116,10 @@ Route::group(array('before'=>'guest'), function(){
 
 		
 		//register view in account layoute
-		Route::get('register',array(
-
-						'as'=>'register',
-						'uses'=>'AccountsController@getRegister'
-					));
+		
 
 		//regiter view in public layout
-		Route::get('account',array(
+		Route::get('account-create',array(
 		'as'=>'account-create',
 		'uses'=>'AccountsController@getCreate'
 		));
@@ -153,37 +153,40 @@ Route::group(array('before'=>'guest'), function(){
 
 
 		//myaccount link's route 
-		Route::get('login', array('as'=>'login',function()
+		Route::get('myaccount', array('as'=>'login',function()
 		{
 			return View::make('Accounts.create')->with('title','Login');
 		}));		
 });
 
-Route::post('contact',array(
+
+Route::post('contactUs',array(
 	'as'=>'contact-message',
 	'uses'=>'ContactUsController@postCreateMessage'
 	));
 
 
-Route::get('contact',array(
+Route::get('contactUs',array(
 	'as'=>'contact-message',
 	function(){
 		return View::make('contact')->with('title','Contact us');
 	}
 	));
-Route::get('dbtest',function(){
 
-	$usre=WebUser::where('code','fAXU70EHJehW7Q4Fm3kF8wmVs3jc0iXJzqGlcDBWrt5a8dnqBikIzKIt5dDK')->where('temp_password','!=','');
-	return $usre->first()->userAccount()->first();
-});
 
 
 
 Event::listen('illuminate.query', function($sql)
 {
- var_dump($sql);
+ //var_dump($sql);
 });
 
+
+
+Route::get('dbtest', array('as'=>'home',function()
+{
+	return "<img src='images/Items/lifebuoy.jpg'/>";
+}));
 
 
 //email testing route
@@ -201,6 +204,8 @@ Route::get('/', array('as'=>'home',function()
 	return View::make('index')->with('title','home');
 }));
 
+
+
 //about us route
 Route::get('about_us', array('as'=>'about_us',function()
 {
@@ -209,13 +214,35 @@ Route::get('about_us', array('as'=>'about_us',function()
 
 
 
-Route::get('store', array('as'=>'store',function()
-{
-	return View::make('Item.index')->with('title','Store');
-}));
+Route::get('store', array(
+	'as'=>'store',
+	'uses'=>'ItemsController@index'));
+
+Route::get('store/{id}',array(
+	'as'=>'store-item',
+	'uses'=>'ItemsController@show'));
+
+Route::get('store/{keyword}/{value}', 
+	array('as'=>'store-search',
+	'uses'=>'ItemsController@search'
+	));
 
 
 
 
 
-Route::get('user','UsersController@index');
+
+//StoreItem::where($keyword,'like','%'.$value.'%');
+Route::get('store/{keyword}/{value}',function($keyword,$value){
+
+$data=StoreItem::where($keyword,'like','%'.$value.'%')->get();
+$content=View::make('Layout.Helper.itemTable')->with('data',$data)->render();
+
+$response = array(
+            'status' => 'success',
+            'msg' => $content
+        );
+ 
+ 		 
+	return $response;
+});
