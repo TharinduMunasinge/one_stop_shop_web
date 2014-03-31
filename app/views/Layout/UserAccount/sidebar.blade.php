@@ -4,7 +4,7 @@
              <li class="nav-header">Order</li>
 
               <li class="divider"></li> 
-              <li><a href="#">Place Order</a></li>
+              <li><a href="{{URL::route('checkout')}}">Place Order</a></li>
               <li class="active"><a href="#">History</a></li>
               
               <li><a href="#">Change </a></li>
@@ -12,7 +12,7 @@
               <br>
               <li class="nav-header">Shopping</li>
               <li class="divider"></li> 
-              <li><a href="#">Search Item</a></li>
+              <li><a href="{{URL::route('list-item')}}">Search Item</a></li>
              <!-- <li><a href="#">Link</a></li>
               <li><a href="#">Link</a></li>
               <li><a href="#">Link</a></li>

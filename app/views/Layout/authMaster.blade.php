@@ -2,12 +2,25 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Sign in &middot; Twitter Bootstrap</title>
+    <title>Sign in &middot; One Stop Shop</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
 
+
+
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap.js" ></script>
+
+
+
     <!-- Le styles -->
+
+
+
+
+
     <link href="../assets/css/bootstrap.css" rel="stylesheet">
     <style type="text/css">
       body {

@@ -2,13 +2,18 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Bootstrap, from Twitter</title>
+    <title>One Stop Shop</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
 
     <!-- Le styles -->
-    <link href="css/bootstrap.css" rel="stylesheet">
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+
+{{HTML::script('js/bootstrap.js')}}
+{{HTML::style('css/bootstrap.css')}}
+{{HTML::script('js/AjaxCode.js')}}
+   
     <style type="text/css">
       body {
         padding-top: 60px;
@@ -116,7 +121,7 @@
                     <div class="alert alert-info">{{ Session::get('global') }}</div>
 @endif
 
-                  @yield('content');
+                  @yield('content')
               </div>
               <hr>
               <div class="row-fluid">

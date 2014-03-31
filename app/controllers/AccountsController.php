@@ -47,6 +47,14 @@ class AccountsController extends BaseController {
 		return View::make('Accounts.create')->with('title','home');
 	}
 
+	public function getAccNo($acno)
+	{
+		$count=Str::length($acno);
+		
+		for($i=$count;$i<=5;$i++)
+			$acno = "0".$acno;
+		return $acno;	
+	}
 	public function postCreate()
 	{
 		$validator= Validator::make(Input::all(),array(
@@ -79,8 +87,12 @@ class AccountsController extends BaseController {
 			    
 			
 
-			$acno=Customer::select('CustomerID')->orderBy('CustomerID', 'desc')->first()->CustomerID+1;
-			$acno="00000".$acno;
+			$acno=Customer::select('CustomerID')->orderBy('CustomerID', 'desc')->first();
+			if($acno==null)
+				$acno=1;
+			else
+				$acno=$acno->CustomerID+1;
+			$acno=$this->getAccNo($acno);
 
 			$customer =new Customer();
 			
@@ -96,8 +108,8 @@ class AccountsController extends BaseController {
 
 
 			$user=new UserAccount();
-			$user->UserName=$username;
-			$user->Password=$password;
+			$user->username=$username;
+			$user->password=$password;
 			$user->AccountType='CU';
 			$user->AccountNumber=$acno;
 			$user->save();
@@ -171,7 +183,7 @@ class AccountsController extends BaseController {
 
 			if($usr->save())
 			{
-				return Redirect::route('account')->with('global','Succefully activated');
+				return Redirect::route('register')->with('global','Succefully activated');
 
 
 			}
@@ -179,7 +191,7 @@ class AccountsController extends BaseController {
 				
 		}
 
-		return Redirect::route('account')->with('gloabl',"coulnd't activate your accout");
+		return Redirect::route('register')->with('gloabl',"coulnd't activate your accout");
 		
 	}
 

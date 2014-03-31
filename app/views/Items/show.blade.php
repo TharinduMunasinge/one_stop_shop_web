@@ -1,4 +1,5 @@
-@extends('Layout.master')
+@extends((Auth::guest())?'Layout.master': 'Layout.userAccountMaster')
+
 
 @section('content')
  <div class="container">
@@ -47,14 +48,13 @@
 					
 			</div>
 
-			<div style='float:right;width:400px'>
+			<div style='float:right;width:300px'>
 					{{HTML::image("images/Items/".$data->image()->first()->image,'Image',array('class'=>'img-polaroid','width'=>200,'height'=>200,))}}
 					
 					<br> <br> <br>
 					<a class="btn btn-primary btn-large" href="{{ URL::to('store') }}">Go to Store</a>
 
-					<a class="btn  btn-warning btn-large" href="{{ URL::to('store') }}">Add Cart</a>
-
+					
 			</div>
 
 </div>

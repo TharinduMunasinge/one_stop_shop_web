@@ -32,13 +32,43 @@ Route::group(array('before'=>'auth'), function(){
 						'uses'=>'AccountsController@postPasswordChange'
 				));
 
+				Route::post('checkout',array(
+			'as'=>'post-checkout',
+			'uses'=>'ItemsController@postCheckout'));
+
+
 		});
+
+
+		Route::get('list-item',array(
+			'as'=>'list-item',
+			'uses'=>'CustomersController@showItemDetails'));
+
+
+
+		Route::get('checkout',array(
+			'as'=>'checkout',
+			'uses'=>'ItemsController@getCheckout'));
+
 
 		Route::get('customer',array(
 
 						'as'=>'customer-home',
 						'uses'=>'CustomersController@index'
 				));
+
+		Route::get('customer-store',array(
+
+						'as'=>'customer-store',
+						'uses'=>'CustomersController@searchItem'
+				));
+
+
+
+
+
+
+
 
 		Route::get('employee',array(
 
@@ -90,6 +120,8 @@ Route::group(array('before'=>'guest'), function(){
 		Route::group(array('before'=>'csrf'),function(){
 				
 					//sign , registration form in public view
+
+
 					Route::post('account/create',array(
 					'as'=>'account',
 					'uses'=>'AccountsController@postCreate'
@@ -185,7 +217,7 @@ Event::listen('illuminate.query', function($sql)
 
 Route::get('dbtest', array('as'=>'home',function()
 {
-	return "<img src='images/Items/lifebuoy.jpg'/>";
+	return URL::route('store',['keyword','x']);
 }));
 
 
@@ -220,6 +252,7 @@ Route::get('store', array(
 
 Route::get('store/{id}',array(
 	'as'=>'store-item',
+
 	'uses'=>'ItemsController@show'));
 
 Route::get('store/{keyword}/{value}', 
@@ -228,7 +261,27 @@ Route::get('store/{keyword}/{value}',
 	));
 
 
+Route::get('cart', array(
+	'as'=>'cart',
+	function(){
 
+		return Session::all();
+	}));
+
+
+
+Route::get('cart/add/{id}/{qty}', array(
+	'as'=>'add-cart',
+	'uses'=>'ItemsController@addCart'));
+
+Route::get('cart/remove/{id}', array(
+	'as'=>'remove-cart',
+	'uses'=>'ItemsController@removeCart'));
+
+
+Route::get('cart/show', array(
+	'as'=>'show-cart',
+	'uses'=>'ItemsController@showCart'));
 
 
 

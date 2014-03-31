@@ -13,8 +13,8 @@
             </p>
             <ul class="nav">
               <li class="active"><a href="#">Home</a></li>
-              <li><a href="#about">About</a></li>
-              <li><a href="#contact">Store</a></li>
+              <li><a href="{{URL::route('about_us')}}">About</a></li>
+              <li><a href="{{URL::route('customer-store')}}">Store</a></li>
               <li><a href="{{URL::route('contact-message')}}">Contact</a></li>
             </ul>
           </div><!--/.nav-collapse -->

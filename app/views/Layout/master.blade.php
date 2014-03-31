@@ -16,8 +16,8 @@
 	
 	
 	@yield('scripts')
-	
-	<script type="text/javascript" src="js/jquery-1.4.2.js" ></script>
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+ 
 	<script type="text/javascript" src="js/bootstrap.min.js" ></script>
 	
 	<script type="text/javascript" src="js/cufon-yui.js"></script>

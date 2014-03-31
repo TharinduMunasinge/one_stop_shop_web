@@ -1,17 +1,17 @@
-@extends('Layout.master')
+@extends((Auth::guest())?'Layout.master': 'Layout.userAccountMaster')
 
 @section('content')
 
 	
 	<div class="container">
-		<div style="max-width:400px;float:left;margin:20px;">
+		<div style="max-width:350px;float:left;margin:20px;">
 		
 			@include('Layout.Helper.contactUs')
 		</div>	
 		
 		
 			
-		<div style="max-width:450px;float:right;margin:20px;">
+		<div style="max-width:400px;float:right;margin:20px;">
 			
 			<address>
 				<strong>Address : </strong><br>

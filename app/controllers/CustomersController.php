@@ -2,6 +2,10 @@
 
 class CustomersController extends \BaseController {
 
+
+
+	public $layout='Layout.userAccountMaster';
+
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -13,6 +17,14 @@ class CustomersController extends \BaseController {
 		return View::make('Customers.index');
 	}
 
+
+
+	public function showItemDetails()
+	{
+		$data=StoreItem::all();
+		return View::make('Customers.shoItemDetails')->with('data',$data);
+	}
+
 	/**
 	 * Show the form for creating a new resource.
 	 *
@@ -21,6 +33,22 @@ class CustomersController extends \BaseController {
 	public function create()
 	{
 		//
+	}
+
+	public function showItem($id)
+	{
+
+		return "HELLO";
+	}
+
+	public function searchItem()
+	{
+		$data= StoreItem::all();
+				 //View::make('Accounts.ItemSearch')->with('data',$data);
+		
+		$this->layout->content= View::make('Accounts.ItemSearch')->with('data',$data);
+
+
 	}
 
 	/**

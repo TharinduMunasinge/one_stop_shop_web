@@ -1,6 +1,9 @@
+@extends('Layout.userAccountMaster');
+
+@section('content')
 <div class='container' style="width:97%">
 
-                   
+ <br><br>        
 
 
 <table class="table table-striped table-bordered table-hover">
@@ -40,26 +43,7 @@
 
 				<!-- edit this nerd (uses the edit method found at GET /nerds/{id}/edit -->
 				
-				@if(Session::has($value->ItemID))
-				<a class="btn btn-small btn-warning" href="#" onclick="toggle({{$value->ItemID}},this)">
-					Remove Cart
-					</a>
-
-				{{Form::selectRange($value->ItemID,1,$value->AvailableQty,Session::has($value->ItemID),array('style'=>'display:inline','id'=>$value->ItemID,'onchange'=>'addCart(this.id,this.selectedIndex)'))}}
-
-				@else
-
-				<a class="btn btn-small btn-warning" href="#" onclick="toggle({{$value->ItemID}},this)">
-					Add Cart
-					</a>
-
-				{{Form::selectRange($value->ItemID,1,$value->AvailableQty,1,array('style'=>'display:none','id'=>$value->ItemID,'onchange'=>'addCart(this.id,this.selectedIndex)'))}}
-
-				@endif
-
-
-
-				
+							
 
 
 			</td>
@@ -67,22 +51,7 @@
 	@endforeach
 	</tbody>
 </table>
-<script>
-					function toggle(x,y){
-						var s=document.getElementById(x);
-						if(y.innerHTML=="Add Cart"){
-						
-						s.style.display="inline";
-						y.innerHTML='Remove Cart';
-						}
-						else
-						{
-							s.style.display="none";
-						y.innerHTML='Add Cart';
-						removeCart(x);
-						}
-					}
-					
-					
-				</script>
+
 </div>
+
+@stop

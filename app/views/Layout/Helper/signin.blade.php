@@ -14,7 +14,10 @@
 
 			        {{Form::token()}}
 			        <button class="btn btn-large btn-primary" type="submit">Sign in</button>&nbsp;&nbsp;
+
+			       
 			        <a href="{{URL::route('forgot-password')}}"> Forgot password ?</a>
+			          <br><br><a href="{{URL::route('register')}}">A New User?</a>
 			      </form>
 			      
 

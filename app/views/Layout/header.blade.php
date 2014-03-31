@@ -19,7 +19,7 @@
 		<div class="wrapper">
 			<div class="text">
 				<span class="text1">Buy<span> All Under One Roof</span></span>
-				<a href="#" class="button">Start Shopping !!!</a>
+				<a href="{{URL::route('store')}}" class="button">Start Shopping !!!</a>
 			</div>
 		</div>
 </header>

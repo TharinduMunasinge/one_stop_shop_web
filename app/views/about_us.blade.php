@@ -1,4 +1,4 @@
-@extends('Layout.master')
+@extends((Auth::guest())?'Layout.master': 'Layout.userAccountMaster')
 
 @section('content')
 
